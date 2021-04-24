@@ -53,7 +53,7 @@ def get_lat_lng(address):
     lat_lng_params = {"key": args.APIKEY, "query": address, "fields": "lat,lng"}
     lat_lng = requests.get(
         "https://maps.googleapis.com/maps/api/place/textsearch/json?",
-        params=lat_long_params,
+        params=lat_lng_params,
     )
     try:
         lat = lat_lng.json()["results"][0]["geometry"]["location"]["lat"]
