@@ -50,14 +50,14 @@ elif len(sys.argv) != 1:
 
 def get_lat_lng(address):
 
-    lat_long_params = {"key": args.APIKEY, "query": address, "fields": "lat,lng"}
-    lat_long = requests.get(
+    lat_lng_params = {"key": args.APIKEY, "query": address, "fields": "lat,lng"}
+    lat_lng = requests.get(
         "https://maps.googleapis.com/maps/api/place/textsearch/json?",
         params=lat_long_params,
     )
     try:
-        lat = lat_long.json()["results"][0]["geometry"]["location"]["lat"]
-        lng = lat_long.json()["results"][0]["geometry"]["location"]["lng"]
+        lat = lat_lng.json()["results"][0]["geometry"]["location"]["lat"]
+        lng = lat_lng.json()["results"][0]["geometry"]["location"]["lng"]
         return str(lat) + "," + str(lng)
 
     except (IndexError, UnboundLocalError):
@@ -101,6 +101,17 @@ def make_phone_number_list():
         phone_numbers = phone_query.json()["result"]
         phone_number_list.append(phone_numbers.get("formatted_phone_number"))
 
+    for x in phone_number_list:
+        if x == None:  # Remove bugged None from the list
+            phone_number_list.remove(x)
+    phone_number_list = list(
+        map(
+            lambda x: x.replace("(", "").replace(")", "").replace(" ", ""),
+            phone_number_list,
+        )
+    )
+    # Remove annoying characters from the list
+
     return phone_number_list
 
 
@@ -108,11 +119,11 @@ def most_common(numbers):
     prefix_l = 3
 
     prefix_counter = collections.Counter()
-    for i in numbers.splitlines():
+    for i in numbers:
         prefix = i[:prefix_l]
         prefix_counter[prefix] += 1
 
-    for prefix, number_of_similarities in prefix_counter.most_common(5):
+    for prefix, number_of_similarities in prefix_counter.most_common():
         return f"{number_of_similarities} numbers started with `{prefix}`"
 
 
@@ -120,14 +131,7 @@ if args.address is not None:
     address = args.address
     print("Lookup Address: " + address + "\n")
     print("List of nearby phone numbers: ")
-    print(
-        phone_number_list := str(make_phone_number_list()[1:-1])[1:-1]
-        .replace(",", "\n")
-        .replace("'", "")
-        .replace("(", "")
-        .replace(")", "")
-        .replace(" ", "")
-    )
+    print(phone_number_list := make_phone_number_list())
     print("\nMost common prefix: ")
     print(most_common(phone_number_list))
 
@@ -143,16 +147,7 @@ if args.inputfile is not None:
         print("Lookup Address: " + address + "\n")
 
         print("List of nearby phone numbers: ")
-        print(
-            phone_number_list := str(make_phone_number_list()[1:-1])[1:-1]
-            .replace(",", "\n")
-            .replace("'", "")
-            .replace("(", "")
-            .replace(")", "")
-            .replace(" ", "")
-            .replace("None", "")
-        )
-
+        print(phone_number_list := make_phone_number_list())
         print("\nMost common prefix: ")
         print(similar_number := most_common(phone_number_list))
 
