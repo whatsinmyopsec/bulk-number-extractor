@@ -54,10 +54,10 @@ def get_lat_lng(address):
     lat_lng = requests.get(
         "https://maps.googleapis.com/maps/api/place/textsearch/json?",
         params=lat_lng_params,
-    )
+    ).json()
     try:
-        lat = lat_lng.json()["results"][0]["geometry"]["location"]["lat"]
-        lng = lat_lng.json()["results"][0]["geometry"]["location"]["lng"]
+        lat = lat_lng["results"][0]["geometry"]["location"]["lat"]
+        lng = lat_lng["results"][0]["geometry"]["location"]["lng"]
         return str(lat) + "," + str(lng)
 
     except (IndexError, UnboundLocalError):
@@ -74,15 +74,10 @@ def get_placeIDs(address):
     nearbyReq = requests.get(
         "https://maps.googleapis.com/maps/api/place/nearbysearch/json?",
         params=nearby_params,
-    )
-    nearby_searches = nearbyReq.json()["results"]
-    placeIDList = []
-
+    ).json()
+    nearby_searches = nearbyReq["results"]
     ## Iterate through JSON and add place_ids to list if not empty
-    for i in nearby_searches:
-        if i["place_id"] is not None:
-            placeIDList.append(i["place_id"])
-
+    placeIDList = [i["place_id"] for i in nearby_searches if i["place_id"] is not None]
     return placeIDList
 
 
@@ -97,8 +92,8 @@ def make_phone_number_list():
         phone_query = requests.get(
             "https://maps.googleapis.com/maps/api/place/details/json?",
             params=placeID_params,
-        )
-        phone_numbers = phone_query.json()["result"]
+        ).json()
+        phone_numbers = phone_query["result"]
         phone_number_list.append(phone_numbers.get("formatted_phone_number"))
 
     for x in phone_number_list:
@@ -107,10 +102,9 @@ def make_phone_number_list():
     phone_number_list = list(
         map(
             lambda x: x.replace("(", "").replace(")", "").replace(" ", ""),
-            phone_number_list,
+            phone_number_list,  # Remove annoying characters from the list
         )
     )
-    # Remove annoying characters from the list
 
     return phone_number_list
 
