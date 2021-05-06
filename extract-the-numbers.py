@@ -177,17 +177,14 @@ def landline_or_not(numbers):
 
     new_numbers = [i[:3] for i in numbers]
     x = 0
+    y = x
     for i in new_numbers:
-        for n in landlines:
-            if i == n:
-                x += 1
-    y = 0
-    for i in new_numbers:
-        for n in mobiles:
-            if i == n:
-                y += 1
+        if i in landlines:
+            x += 1
+        if i in mobiles:
+            y += 1
     if x > y:
-        return "landlines are more popular still here"
+        return "landlines  are more popular still here"
     else:
         return "mobiles are more popular here"
 
