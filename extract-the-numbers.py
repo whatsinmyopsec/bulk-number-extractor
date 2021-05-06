@@ -176,8 +176,8 @@ def landline_or_not(numbers):
     mobiles = ["083", "086", "084", "087", "089"]
 
     new_numbers = [i[:3] for i in numbers]
-    x = 0
-    y = x
+    x, y = 0, 0
+
     for i in new_numbers:
         if i in landlines:
             x += 1
