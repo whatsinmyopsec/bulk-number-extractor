@@ -121,6 +121,77 @@ def most_common(numbers):
         return f"{number_of_similarities} numbers started with `{prefix}`"
 
 
+def landline_or_not(numbers):
+    landlines = [
+        "01",
+        "021",
+        "022",
+        "023",
+        "024",
+        "025",
+        "026",
+        "027",
+        "028",
+        "029",
+        "0402",
+        "0404",
+        "041",
+        "042",
+        "043",
+        "044",
+        "045",
+        "046",
+        "047",
+        "049",
+        "0504",
+        "0505",
+        "051",
+        "052",
+        "053",
+        "056",
+        "057",
+        "058",
+        "059",
+        "061",
+        "062",
+        "063",
+        "064",
+        "065",
+        "066",
+        "067",
+        "068",
+        "069",
+        "071",
+        "074",
+        "090",
+        "091",
+        "093",
+        "094",
+        "095",
+        "096",
+        "097",
+        "098",
+        "099",
+    ]
+    mobiles = ["083", "086", "084", "087", "089"]
+
+    new_numbers = [i[:3] for i in numbers]
+    x = 0
+    for i in new_numbers:
+        for n in landlines:
+            if i == n:
+                x += 1
+    y = 0
+    for i in new_numbers:
+        for n in mobiles:
+            if i == n:
+                y += 1
+    if x > y:
+        return "landlines are more popular still here"
+    else:
+        return "mobiles are more popular here"
+
+
 if args.address is not None:
     address = args.address
     print("Lookup Address: " + address + "\n")
@@ -128,6 +199,7 @@ if args.address is not None:
     print(phone_number_list := make_phone_number_list())
     print("\nMost common prefix: ")
     print(most_common(phone_number_list))
+    print(landline_or_not(phone_number_list))
 
 if args.inputfile is not None:
     file = open(args.inputfile, "r")
