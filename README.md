@@ -1,16 +1,19 @@
 ﻿# bulk-number-extractor
 
 ## Setup
-Clone project \
+
+git clone https://github.com/whatsinmyopsec/bulk-number-extractor
 cd into bulk-number-extractor folder
 
 ### Install requirements
+
 ```
 pip install -r requirements.txt
 ```
 
 ## Usage
-```
+
+````
 usage: extract-the-numbers.py [-h] [-k APIKEY] [-i INPUTFILE] [-o OUTPUTFILE] [-a ADDRESS]
 
 optional arguments:
@@ -22,14 +25,16 @@ optional arguments:
   -i INPUTFILE, --inputfile INPUTFILE
                         Input file containing a newline separated list of addresses
   -o OUTPUTFILE, --outputfile OUTPUTFILE
-                        Name of output file containing a comma separated list addresses and a   
+                        Name of output file containing a comma separated list addresses and a
                         given phone number
   -a ADDRESS, --address ADDRESS
                         Address to convert to local phone numbers```
-```
+````
+
 ### Example output with a single address:
+
 ```
-> python extract-the-numbers.py -k <your api key> -a "Thomas Street Dublin"
+> python extract-the-numbers.py -k <your_api_key> -a "Thomas Street Dublin"
 
 List of nearby phone numbers:
 1800201080
@@ -55,8 +60,9 @@ Most common prefix:
 ```
 
 ### Example output with a list of newline-delimited addresses:
+
 ```
-> python extract-the-numbers.py -k <your api key> -i test.txt -o outx.txt
+> python extract-the-numbers.py -k <your_api_key> -i test.txt -o outx.txt
 
 Lookup Address: Killarney Street Dublin
 

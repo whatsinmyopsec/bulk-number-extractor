@@ -95,98 +95,33 @@ def make_phone_number_list():
         ).json()
         phone_numbers = phone_query["result"]
         phone_number_list.append(phone_numbers.get("formatted_phone_number"))
-
-    for x in phone_number_list:
-        if x == None:  # Remove bugged None from the list
-            phone_number_list.remove(x)
+    new_list = [i for i in phone_number_list if i]
     phone_number_list = list(
         map(
             lambda x: x.replace("(", "").replace(")", "").replace(" ", ""),
-            phone_number_list,  # Remove annoying characters from the list
+            new_list,  # Remove annoying characters from the list
         )
     )
 
     return phone_number_list
 
 
-def most_common(numbers):
-    prefix_l = 3
-
-    prefix_counter = collections.Counter()
-    for i in numbers:
-        prefix = i[:prefix_l]
-        prefix_counter[prefix] += 1
-
-    for prefix, number_of_similarities in prefix_counter.most_common():
-        return f"{number_of_similarities} numbers started with `{prefix}`"
-
-
 def landline_or_not(numbers):
-    landlines = [
-        "01",
-        "021",
-        "022",
-        "023",
-        "024",
-        "025",
-        "026",
-        "027",
-        "028",
-        "029",
-        "0402",
-        "0404",
-        "041",
-        "042",
-        "043",
-        "044",
-        "045",
-        "046",
-        "047",
-        "049",
-        "0504",
-        "0505",
-        "051",
-        "052",
-        "053",
-        "056",
-        "057",
-        "058",
-        "059",
-        "061",
-        "062",
-        "063",
-        "064",
-        "065",
-        "066",
-        "067",
-        "068",
-        "069",
-        "071",
-        "074",
-        "090",
-        "091",
-        "093",
-        "094",
-        "095",
-        "096",
-        "097",
-        "098",
-        "099",
-    ]
-    mobiles = ["083", "086", "084", "087", "089"]
-
-    new_numbers = [i[:3] for i in numbers]
-    x, y = 0, 0
-
-    for i in new_numbers:
-        if i in landlines:
+    mobiles = ["083", "086", "087", "089", "085"]
+    specials = ["180", "008", "081", "185", "189", "076"]
+    formatted_numbers = [i[:3] for i in numbers]
+    x, y, z = 0, 0, 0
+    for i in formatted_numbers:
+        if i not in mobiles:
             x += 1
         if i in mobiles:
             y += 1
+        if i in specials:
+            z += 1
     if x > y:
-        return "landlines  are more popular still here"
+        return f"landlines are more popular here still {x}:{y}:{z}"
     else:
-        return "mobiles are more popular here"
+        return "mobiles are more popular here {y}:{x}:{z}"
 
 
 if args.address is not None:
@@ -194,9 +129,8 @@ if args.address is not None:
     print("Lookup Address: " + address + "\n")
     print("List of nearby phone numbers: ")
     print(phone_number_list := make_phone_number_list())
-    print("\nMost common prefix: ")
-    print(most_common(phone_number_list))
-    print(landline_or_not(phone_number_list))
+    n = landline_or_not(phone_number_list)
+    print(n)
 
 if args.inputfile is not None:
     file = open(args.inputfile, "r")
@@ -211,11 +145,11 @@ if args.inputfile is not None:
 
         print("List of nearby phone numbers: ")
         print(phone_number_list := make_phone_number_list())
-        print("\nMost common prefix: ")
-        print(similar_number := most_common(phone_number_list))
+        n = landline_or_not(phone_number_list)
+        print(n)
 
         try:
-            outFile.writelines((line + "\t" + similar_number) + "\n")
+            outFile.writelines((line + "\t" + n) + "\n")
         except TypeError:
             pass
     outFile.close()
