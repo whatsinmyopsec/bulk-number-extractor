@@ -2,9 +2,10 @@
 
 ## Setup
 
+```
 git clone https://github.com/whatsinmyopsec/bulk-number-extractor
 cd into bulk-number-extractor folder
-
+```
 ### Install requirements
 
 ```
@@ -100,7 +101,6 @@ List of nearby phone numbers:
 018117781
 018306919
 018603426
-
 0871655673
 0899844897
 016978369
