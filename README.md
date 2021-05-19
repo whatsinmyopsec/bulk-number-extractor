@@ -36,27 +36,17 @@ optional arguments:
 ```
 > python extract-the-numbers.py -k <your_api_key> -a "Thomas Street Dublin"
 
+Lookup Address: Thomas Street Dublin
+
 List of nearby phone numbers:
-1800201080
-016364200
-016791709
-0761077180
-014535233
-016798661
-015169106
-016718606
-016991700
-014582336
-014534240
-014735100
-016729488
-016908010
-014893602
-0868923406
+['1800201080', '016364200', '016791709', '0761077180', '014535233', '016798661', '015169106', '016718606', '016991700', '014582336', '014534240', '014735100', '016729488', '016908010', '014893602', '0868923406', '014163558']
 
+x:y:z
 
-Most common prefix:
-7 numbers started with `016`
+x = lanlines
+y = mobiles
+z = other types
+landlines are more popular here still 16:1:2
 ```
 
 ### Example output with a list of newline-delimited addresses:
@@ -64,54 +54,22 @@ Most common prefix:
 ```
 > python extract-the-numbers.py -k <your_api_key> -i test.txt -o outx.txt
 
+x:y:z
+
+x = lanlines
+y = mobiles
+z = other types
+
 Lookup Address: Killarney Street Dublin
 
 
 List of nearby phone numbers:
-018847700
-018363166
-018364935
-018556886
-018847700
-018365677
-018847962
-017645854
-018554363
-015175087
-0851063999
-018881804
-015157241
-018363326
-018764690
-018878404
-018349851
-018178076
+['018847700', '018363166', '018364935', '018556886', '018847700', '018365677', '018847962', '017645854', '018554363', '015175087', '0851063999', '018881804', '015157241', '018363326', '018764690', '018878404', '018349851', '018178076']
+landlines are more popular here still 17:1:0
 
-Most common prefix:
-14 numbers started with `018`
 Lookup Address: Leo Street Dublin
 
-
 List of nearby phone numbers:
-018032000
-0852085142
-014475195
-0872866598
-018117781
-018306919
-018603426
-
-0871655673
-0899844897
-016978369
-015674470
-015985831
-0876382415
-0899646929
-
-
-
-
-Most common prefix:
-4 numbers started with `018`
+['018032000', '0852085142', '014475195', '0872866598', '018117781', '018306919', '018603426', '0871655673', '0899844897', '016978369', '015674470', '015985831', '0876382415', '0899646929']
+landlines are more popular here still 8:6:0
 ```

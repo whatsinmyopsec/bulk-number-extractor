@@ -121,7 +121,7 @@ def landline_or_not(numbers):
     if x > y:
         return f"landlines are more popular here still {x}:{y}:{z}"
     else:
-        return f"mobiles are more popular here {y}:{x}:{z}"
+        return f"mobiles are more popular here {x}:{y}:{z}"
 
 
 if args.address is not None:
@@ -129,6 +129,7 @@ if args.address is not None:
     print("Lookup Address: " + address + "\n")
     print("List of nearby phone numbers: ")
     print(phone_number_list := make_phone_number_list())
+    print("\nx:y:z\n\nx = lanlines\ny = mobiles\nz = other types")
     print(freq := landline_or_not(phone_number_list))
 
 if args.inputfile is not None:
@@ -137,11 +138,10 @@ if args.inputfile is not None:
 
     ## Setup outfile and headers
     outFile = open(args.outputfile, "a")
-
+    print("\nx:y:z\n\nx = lanlines\ny = mobiles\nz = other types")
     for line in Lines:
         address = line
-        print("Lookup Address: " + address + "\n")
-
+        print("\n" + "Lookup Address: " + address + "\n")
         print("List of nearby phone numbers: ")
         print(phone_number_list := make_phone_number_list())
         print(freq := landline_or_not(phone_number_list))
