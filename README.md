@@ -1,5 +1,10 @@
 ﻿# bulk-number-extractor
 
+## About
+
+A program developed to see if there are any streets with more mobile number operated businesses then the traditional landline operations.
+The use of Google's Places API is very important to rip all those numbers out.
+
 ## Setup
 
 git clone https://github.com/whatsinmyopsec/bulk-number-extractor
