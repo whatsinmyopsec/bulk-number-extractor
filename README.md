@@ -36,16 +36,15 @@ optional arguments:
 ```
 > python extract-the-numbers.py -k <your_api_key> -a "Thomas Street Dublin"
 
-Lookup Address: Thomas Street Dublin
-
-List of nearby phone numbers:
-['1800201080', '016364200', '016791709', '0761077180', '014535233', '016798661', '015169106', '016718606', '016991700', '014582336', '014534240', '014735100', '016729488', '016908010', '014893602', '0868923406', '014163558']
-
 x:y:z
 
 x = lanlines
 y = mobiles
 z = other types
+Lookup Address: Thomas Street Dublin
+
+List of nearby phone numbers:
+['1800201080', '016364200', '016791709', '0761077180', '014535233', '016798661', '015169106', '016718606', '016991700', '014582336', '014534240', '014735100', '016729488', '016908010', '014893602', '0868923406', '014163558']
 landlines are more popular here still 16:1:2
 ```
 
