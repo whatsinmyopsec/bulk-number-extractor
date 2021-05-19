@@ -126,10 +126,10 @@ def landline_or_not(numbers):
 
 if args.address is not None:
     address = args.address
+    print("\nx:y:z\n\nx = lanlines\ny = mobiles\nz = other types")
     print("Lookup Address: " + address + "\n")
     print("List of nearby phone numbers: ")
     print(phone_number_list := make_phone_number_list())
-    print("\nx:y:z\n\nx = lanlines\ny = mobiles\nz = other types")
     print(freq := landline_or_not(phone_number_list))
 
 if args.inputfile is not None:
