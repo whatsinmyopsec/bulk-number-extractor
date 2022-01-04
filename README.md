@@ -47,7 +47,7 @@ optional arguments:
 
 x:y:z
 
-x = lanlines
+x = landlines
 y = mobiles
 z = other types
 Lookup Address: Thomas Street Dublin
@@ -64,7 +64,7 @@ landlines are more popular here still 16:1:2
 
 x:y:z
 
-x = lanlines
+x = landlines
 y = mobiles
 z = other types
 
