@@ -126,7 +126,7 @@ def landline_or_not(numbers):
 
 if args.address is not None:
     address = args.address
-    print("\nx:y:z\n\nx = lanlines\ny = mobiles\nz = other types")
+    print("\nx:y:z\n\nx = landlines\ny = mobiles\nz = other types")
     print("Lookup Address: " + address + "\n")
     print("List of nearby phone numbers: ")
     print(phone_number_list := make_phone_number_list())
@@ -138,7 +138,7 @@ if args.inputfile is not None:
 
     ## Setup outfile and headers
     outFile = open(args.outputfile, "a")
-    print("\nx:y:z\n\nx = lanlines\ny = mobiles\nz = other types")
+    print("\nx:y:z\n\nx = landlines\ny = mobiles\nz = other types")
     for line in Lines:
         address = line
         print("\n" + "Lookup Address: " + address + "\n")
